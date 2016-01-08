@@ -1,0 +1,1 @@
+# kolicina_snega_na_smuciscih
