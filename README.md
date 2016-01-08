@@ -1,3 +1,3 @@
 # kolicina_snega_na_smuciscih
 
-merjenje kolicine snega na slovenskih smuciscih.
+Merjenje kolicine snega na slovenskih smuciscih.
