@@ -1,4 +1,4 @@
-# kolicina_snega_na_smuciscih
+# Smučišča
 
 ##zajeti podatki:
 ❄︎ datum in ura
