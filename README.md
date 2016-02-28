@@ -2,6 +2,7 @@
 
 ##zajeti podatki:
 ❄︎ datum in ura
+
 ❄︎ ime smučišča
 ❄︎ vreme
 ❄︎ temperatura
