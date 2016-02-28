@@ -15,6 +15,8 @@
 
 ❄︎ zapiralni čas smučišča
 
+Vse te podatke bom zajela na strani http://wwww.snezni-telefon.si .
+
 ##predvidena analiza:
 ❄︎ v katerem obdobju je bilo na Slovenskih smučiščih največ snega?
 
