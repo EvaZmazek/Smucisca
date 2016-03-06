@@ -115,6 +115,12 @@ def koliko_prog(mnozice):
         slovarcek[x]=k
     return slovarcek
 
+def sneg(stevilo):
+    if stevilo=='-':
+        return 0
+    else:
+        return stevilo
+
 def solata(mnozica):
     koliko=0
     od=0

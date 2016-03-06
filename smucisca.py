@@ -5,6 +5,7 @@ import requests
 import re
 import sys
 import definicije
+import pandas as pd
 
 ##REGULARNI IZRAZ VZOREC
 vzorec = re.compile(
@@ -23,7 +24,6 @@ def poglej_delovanje_ragularnega_izraza_vzorec_na_datoteki(datoteka):
     for ujemanje in re.finditer(vzorec, definicije.odpri(datoteka)):
         print(ujemanje.groupdict())
 
-
 ##FUNKCIJA UREDI_SMUČIŠČE
 def uredi_smucisce(smucisce):
     podatki=smucisce.groupdict()
@@ -31,6 +31,8 @@ def uredi_smucisce(smucisce):
     regex_obratovanja=re.compile(
         r">(?P<odpiralni>\d+\.\d{2})\-?(?P<zapiralni>\d+\.\d{2})<"
     )
+
+    podatki['sneg']=definicije.sneg(podatki['sneg'])
     
     podatki['obratovanje']={(smuka.group('odpiralni'),smuka.group('zapiralni')) for smuka in re.finditer(regex_obratovanja,podatki['obratovanje'])}
 
@@ -75,11 +77,14 @@ def poglej_funkcijo_uredi_smucisce_na_mapi(mapa):
 
 ## SPREMENI DATOTEKE IZ .HTML V .CSV
 for html_datoteka in definicije.datoteke('sneg/'):
-    if html_datoteka[-4:] == '.csv':
+    if html_datoteka[-5:] != '.html':
         continue
     csv_datoteka=html_datoteka.replace('.html','.csv')
     cas=csv_datoteka[5:-4]
-    imena_polj = ['smucisce','vreme','temperatura','sneg','obratovanje','odprto','sedeznice','cas','proge']
+    datum=cas[:-9]
+    ura=cas[-8:-3]
+    cas1=datum + ' ' + ura
+    imena_polj = ['smucisce','cas','datum','vreme','temperatura','sneg','obratovanje','odprto','sedeznice','proge']
     with open(csv_datoteka, 'w', encoding='utf8') as csv_dat:
         writer = csv.DictWriter(csv_dat , imena_polj)
         writer.writeheader()
@@ -87,7 +92,8 @@ for html_datoteka in definicije.datoteke('sneg/'):
         drugi.writerow([cas])
         for ujemanje in re.finditer(vzorec,definicije.odpri(html_datoteka)):
             _,slovar=uredi_smucisce(ujemanje)
-            slovar['cas']=cas
+            slovar['cas']=pd.to_datetime(cas1)
+            slovar['datum']=datum
             slovar['odprto']=definicije.nova_funkcija(slovar['obratovanje'])
             slovar['proge']=definicije.solata(slovar['sedeznice'])
             slovar['sedeznice']=definicije.koliko_prog(slovar['sedeznice'])
@@ -95,17 +101,21 @@ for html_datoteka in definicije.datoteke('sneg/'):
 
 ## SKUPNA DATOTEKA
 definicije.pripravi_imenik('csv_datoteke/skupna.csv')
-imena_polj=['smucisce','cas','vreme','temperatura','sneg','obratovanje','odprto','sedeznice','proge']
+imena_polj=['smucisce','cas','datum','vreme','temperatura','sneg','obratovanje','odprto','sedeznice','proge']
 with open('csv_datoteke/skupna.csv', 'w', encoding='utf8') as dat:
     writer=csv.DictWriter(dat, imena_polj)
     writer.writeheader()
     for html_datoteka in definicije.datoteke('sneg/'):
         if html_datoteka[-5:] != '.html':
             continue
-        cas=html_datoteka[5:-4]
+        cas=html_datoteka[5:-5]
+        datum=cas[:-9]
+        ura=cas[-8:-3]
+        cas1=datum + ' ' + ura
         for smucisce in re.finditer(vzorec,definicije.odpri(html_datoteka)):
             _,slovar=uredi_smucisce(smucisce)
-            slovar['cas']=cas
+            slovar['cas']=pd.to_datetime(cas1)
+            slovar['datum']=datum
             slovar['odprto']=definicije.nova_funkcija(slovar['obratovanje'])
             slovar['proge']=definicije.solata(slovar['sedeznice'])
             slovar['sedeznice']=definicije.koliko_prog(slovar['sedeznice'])
@@ -123,7 +133,7 @@ for smucisce in smucisca:
         ime='csv_datoteke/posamezna_smucisca/' + str(smucisce) + '.csv'
         definicije.pripravi_imenik(ime)
 
-    polja=['smucisce','cas', 'vreme', 'temperatura', 'sneg', 'obratovanje','odprto', 'sedeznice','proge']
+    polja=['smucisce','cas', 'datum','vreme', 'temperatura', 'sneg', 'obratovanje','odprto', 'sedeznice','proge']
     with open(ime, 'w', encoding='utf8') as sm:
         writer=csv.DictWriter(sm, polja)
         drugi=csv.writer(sm)
@@ -131,10 +141,14 @@ for smucisce in smucisca:
         for dat in definicije.datoteke('sneg/'):
             if dat[-5:] != '.html':
                 continue
-            cas=dat[5:-4]
+            cas=dat[5:-5]
+            datum=cas[:-9]
+            ura=cas[-8:-3]
+            cas1=datum + ' ' + ura
             for ujemanje in re.finditer(vzorec,definicije.odpri(dat)):
                 ime,slovar=uredi_smucisce(ujemanje)
-                slovar['cas']=cas
+                slovar['cas']=pd.to_datetime(cas1)
+                slovar['datum']=datum
                 slovar['odprto']=definicije.nova_funkcija(slovar['obratovanje'])
                 slovar['proge']=definicije.solata(slovar['sedeznice'])
                 slovar['sedeznice']=definicije.koliko_prog(slovar['sedeznice'])
