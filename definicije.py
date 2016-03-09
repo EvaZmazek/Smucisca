@@ -74,9 +74,47 @@ def vreme_ikone(ikonica):
 
 def ime_smucisca(name):
     if name=='MariborskoPoh.':
-        return 'MariborskoPohorje'
+        return 'Mariborsko_Pohorje'
+    elif name=='MariborskoPohorje':
+        return 'Mariborsko_Pohorje'
     elif name=='RTCKranjskaG.':
         return 'RTCKranjskaGora'
+    elif name=='Celjskakoča':
+        return 'Celjska_koča'
+    elif name=='GTCKope':
+        return 'GTC_Kope'
+    elif name=='MacesnovcRateče':
+        return 'Macesnov_Rateče'
+    elif name=='RibnicanaPohorju':
+        return 'Ribnica_na_Pohorju'
+    elif name=='Ribniškakoča':
+        return 'Ribniška_koča'
+    elif name=='RibniškoPohorje':
+        return 'Ribniško_Pohorje'
+    elif name=='RTCGolte':
+        return 'RTC_Golte'
+    elif name=='RTCKranjskaGora':
+        return 'RTC_Kranjska_Gora'
+    elif name=='RTCKrvavec':
+        return 'RTC_Krvavec'
+    elif name=='SCCerkno':
+        return 'SC_Cerkno'
+    elif name=='ŠCRudno':
+        return 'ŠC_Rudno'
+    elif name=='SKIBorČrnivrh':
+        return 'SKI_Bor_Črni_vrh'
+    elif name=='Soriškaplanina':
+        return 'Soriška_planina'
+    elif name=='STCStarivrh':
+        return 'STC_Stari_vrh'
+    elif name=='StražaBled':
+        return 'Straža_Bled'
+    elif name=='TrijeKralji':
+        return 'Trije_Kralji'
+    elif name=='ŽičniceVogel':
+        return 'Žičnice_Vogel'
+    elif name=='MariborskoPohorje':
+        return 'Mariborsko_Pohorje'
     else:
         return name
 
