@@ -8,7 +8,7 @@
 ❄︎ količina snega  
 ❄︎ odpiralni čas smučišča  
 ❄︎ zapiralni čas smučišča  
-Vsi podatki so bili zajeti na strani [snezni telefon[http://wwww.snezni-telefon.si] .
+Vsi podatki so bili zajeti na [strani](http://wwww.snezni-telefon.si) .
 
 ##predvidena analiza:
 ❄︎ v katerem obdobju je bilo na slovenskih smučiščih največ snega?  
