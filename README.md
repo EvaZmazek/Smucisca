@@ -11,7 +11,7 @@
 Vsi podatki so bili zajeti na strani http://wwww.snezni-telefon.si .
 
 ##predvidena analiza:
-❄︎ v katerem obdobju je bilo na Slovenskih smučiščih največ snega?  
+❄︎ v katerem obdobju je bilo na slovenskih smučiščih največ snega?  
 ❄︎ koliko je količina snega odvisna od temperature in vremena?  
 ❄︎ koliko je od količine snega/ temperature/ vremena odvisen obratovalni čas smučišča?  
 ❄︎ katero smučišče ima največji povprečen obratovalni čas?  
